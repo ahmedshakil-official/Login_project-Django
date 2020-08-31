@@ -1,0 +1,27 @@
+{% extends 'login_app/base.html' %}
+
+{% block body_block %}
+    {% if user.is_authenticated %}
+        <h1>Welcome Mr {{ user_info.username }}</h1>
+        <h2>Email : {{ user_info.email }}</h2>
+        <h3><a style="text-decoration: none" href="{{ user_more_info.facebook_id }}">Facebook</a></h3>
+        <img src="/media/{{ user_more_info.profile_pic }}" width="200px">
+    <h1>Here is all Users</h1>
+    <table class="table table-bordered">
+    <tr>
+        <th>User Name</th>
+        <th>Email Address</th>
+    </tr>
+    {% for user in users %}
+      <tr>
+        {% if user.email %}
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+        {% endif %}
+
+      </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+    {% endif %}
+{% endblock %}
